@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Composer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .composer-box {
+        max-width: 600px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 30px;
+      }
+      .post-btn {
+        background-color: #001f54;
+        color: white;
+        border: none;
+        font-weight: 600;
+        border-radius: 12px;
+      }
+      .post-btn:hover {
+        background-color: #002b75;
+      }
+      .audience-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #e7f1ff;
+        color: #0a58ca;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 40px 8px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230a58ca' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 .354.854l-6 6a.5.5 0 0 1-.708 0l-6-6A.5.5 0 0 1 1.5 5.5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 12px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .audience-select:hover {
+        background-color: #d0e2ff;
+      }
+    </style>
+  </head>
+
+  <body class="d-flex align-items-center justify-content-center vh-100">
+    <div class="composer-box text-center">
+      <h3 class="fw-semibold mb-4">What’s happening?</h3>
+
+      <form action="/create" method="POST" enctype="multipart/form-data">
+        <div class="mb-4">
+          <textarea
+            name="description"
+            class="form-control p-3"
+            rows="3"
+            value="<%= post.description %>"
+            placeholder="Add a caption..."
+            style="border-radius: 12px;"
+          ></textarea>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <label
+            id="imageLabel"
+            class="btn btn-link text-primary fw-medium d-flex align-items-center gap-2 mb-0"
+            style="cursor:pointer;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                 class="bi bi-image" viewBox="0 0 16 16">
+              <path
+                d="M13.002 1a2 2 0 0 1 2 2v10.002a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.002a2 2 0 0 1 2-2h10.002zM3 0a3 3 0 0 0-3 3v10.002a3 3 0 0 0 3 3h10.002a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"
+              />
+              <path
+                d="M10.648 8.646a.5.5 0 0 1 .707.708L8.207 12l-2.5-2.5L2 14h12l-3.352-5.354z"
+              />
+            </svg>
+            <span id="imageLabelText">Add Image</span>
+            <input type="file" name="image" id="imageInput" class="d-none" />
+          </label>
+          <div>
+            <select name="isPrivate" id="privateSelect" class="audience-select">
+              <option value="false" selected>Everyone can view & reply</option>
+              <option value="true">Private (Only me)</option>
+            </select>
+          </div>
+        </div>
+
+        <% if(errors&&errors.length>0){ %>
+            <% errors.forEach(error=>{ %>
+                <p style="color:red;"><%= error %></p>
+                <% }) %>
+            <% } %>
+        <button type="submit" class="btn w-100 py-3 post-btn">
+          Share now
+        </button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const imageInput = document.getElementById("imageInput");
+      const imageLabelText = document.getElementById("imageLabelText");
+      imageInput.addEventListener("change", (e) => {
+        const fileName = e.target.files.length ? e.target.files[0].name : "Add Image";
+        imageLabelText.textContent = fileName;
+      });
+    </script>
+  </body>
+</html>

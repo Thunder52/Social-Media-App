@@ -1,0 +1,109 @@
+<%- include('partials/navbar.ejs') %>
+
+<body class="bg-light">
+  <div class="container mt-5">
+    <% if(posts && posts.length > 0){ %>
+      <h2 class="text-center mb-4 fw-bold">Explore Posts</h2>
+
+      <div class="row justify-content-center">
+        <% posts.forEach((post) => { %>
+          <div class="col-md-6 mb-5">
+            <div class="card border-0 shadow-sm rounded-4">
+              <div class="card-header bg-white border-0 d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <img src="https://ui-avatars.com/api/?name=<%= encodeURIComponent(post.User.fullName) %>&background=random"
+                       alt="avatar" class="rounded-circle me-3" width="45" height="45">
+                  <div>
+                    <h6 class="mb-0 fw-semibold"><%= post.User.fullName %></h6>
+                    <small class="text-muted">@<%= post.User.fullName.toLowerCase().replace(/\s+/g, '') %></small>
+                  </div>
+                </div>
+
+                <% if(post.isCreater){ %>
+                  <div>
+                    <button onclick="window.location.href='/update/<%=post.id%>'" 
+                            class="btn btn-sm btn-outline-success me-1">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button onclick="window.location.href='/delete/<%=post.id%>'" 
+                            class="btn btn-sm btn-outline-danger me-1">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                <% } %>
+              </div>
+              <% if(post.image){ %>
+              <img src="<%= post.image %>" class="card-img-top rounded-0" 
+                   style="height: 350px; object-fit: cover;">
+              <% } %>
+              <div class="card-body">
+                <h5 class="fw-bold"><%= post.title %></h5>
+                <p class="text-muted mb-3"><%= post.description %></p>
+
+                <button class="btn btn-sm btn-outline-primary mb-2" 
+                        onclick="toggleComments(<%=post.id%>)">
+                  💬 Comments (<%= post.Comments ? post.Comments.length : 0 %>)
+                </button>
+              </div>
+              <div id="comments-<%= post.id %>" class="px-3 pb-3" style="display: none;">
+                <hr>
+
+                <form action="/comment" method="post" class="mb-3 d-flex">
+                  <input type="hidden" name="postId" value="<%= post.id %>">
+                  <input type="text" name="comment" class="form-control rounded-pill me-2" 
+                         placeholder="Add a comment..." required>
+                  <button type="submit" class="btn btn-dark rounded-pill px-3">Post</button>
+                </form>
+
+                <% if(post.Comments && post.Comments.length > 0){ %>
+                  <div class="comment-list" style="max-height: 200px; overflow-y: auto;">
+                    <% post.Comments.forEach(comment => { %>
+                      <div class="d-flex align-items-start mb-3">
+                        <img src="https://ui-avatars.com/api/?name=<%= encodeURIComponent(comment.User ? comment.User.fullName : 'U') %>&background=random"
+                             alt="avatar" class="rounded-circle me-3" width="40" height="40">
+                        <div class="bg-light p-3 rounded-3 w-100">
+                          <strong><%= comment.User ? comment.User.fullName : 'Anonymous' %></strong><br>
+                          <span class="text-muted"><%= comment.comment %></span>
+                        </div>
+                      </div>
+                    <% }) %>
+                  </div>
+                <% } else { %>
+                  <p class="text-muted text-center">No comments yet. Be the first!</p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+        <ul class="pagination pagination-lg">
+          <li class="page-item <%= currPage == 1 ? 'disabled' : '' %>">
+            <a class="page-link" href="/?page=<%= currPage - 1 %>" tabindex="-1">Previous</a>
+          </li>
+          <% for(let i = 1; i <= totalPage; i++){ %>
+            <li class="page-item <%= currPage == i ? 'active' : '' %>">
+              <a class="page-link" href="/home?page=<%= i %>"><%= i %></a>
+            </li>
+          <% } %>
+          <li class="page-item <%= currPage == totalPage ? 'disabled' : '' %>">
+            <a class="page-link" href="/home?page=<%= currPage + 1 %>">Next</a>
+          </li>
+
+        </ul>
+      </nav>
+
+    <% } else { %>
+      <h1 class="text-center mt-5 text-secondary">No Posts Available</h1>
+    <% } %>
+  </div>
+
+  <script>
+    function toggleComments(id) {
+      const commentsDiv = document.getElementById(`comments-${id}`);
+      commentsDiv.style.display = (commentsDiv.style.display === "none" || commentsDiv.style.display === "")
+        ? "block" : "none";
+    }
+  </script>
+</body>
+</html>
