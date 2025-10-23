@@ -1,0 +1,268 @@
+body {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.composer-container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.composer-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+}
+
+.composer-header {
+  padding: 24px 32px;
+  border-bottom: 1px solid #f0f0f0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.composer-header h3 {
+  color: white;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.composer-header i {
+  font-size: 28px;
+}
+
+.composer-body {
+  padding: 32px;
+}
+
+.form-textarea {
+  border: 2px solid #e9ecef;
+  border-radius: 16px;
+  padding: 18px;
+  font-size: 15px;
+  transition: all 0.3s;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form-textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+.form-textarea::placeholder {
+  color: #adb5bd;
+}
+
+.upload-section {
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.upload-section:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.upload-section.has-file {
+  border-style: solid;
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.upload-icon {
+  font-size: 48px;
+  color: #667eea;
+  margin-bottom: 12px;
+}
+
+.upload-text {
+  color: #6c757d;
+  font-size: 15px;
+  margin: 0;
+}
+
+.upload-text strong {
+  color: #667eea;
+}
+
+.file-preview {
+  display: none;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 12px;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-preview.show {
+  display: flex;
+}
+
+.file-preview i {
+  font-size: 24px;
+  color: #667eea;
+}
+
+.file-name {
+  flex: 1;
+  color: #262626;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.remove-file {
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.2s;
+}
+
+.remove-file:hover {
+  transform: scale(1.1);
+}
+
+.privacy-selector {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 20px;
+  border: 2px solid #e9ecef;
+}
+
+.privacy-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.privacy-label i {
+  font-size: 18px;
+}
+
+.privacy-option {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.privacy-option:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.privacy-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.privacy-option label {
+  cursor: pointer;
+  margin: 0;
+  flex: 1;
+  font-size: 14px;
+  color: #495057;
+}
+
+.privacy-option i {
+  font-size: 18px;
+  color: #6c757d;
+  margin-right: 12px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  font-weight: 600;
+  border-radius: 16px;
+  padding: 16px 32px;
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  width: 100%;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.error-message {
+  background: #fff0f0;
+  border: 1px solid #ffcdd2;
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #c62828;
+  font-size: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.error-message i {
+  font-size: 18px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #6c757d;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  transition: all 0.2s;
+}
+
+.back-link:hover {
+  color: #667eea;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .composer-body {
+    padding: 24px;
+  }
+
+  .composer-header {
+    padding: 20px 24px;
+  }
+}

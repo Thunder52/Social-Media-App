@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:'postId'
       });
       Comment.belongsTo(models.User,{
-        foreignKey:'userId'
+        foreignKey:'userId',
       })
     }
   }

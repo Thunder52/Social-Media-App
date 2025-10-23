@@ -13,10 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.Post, {
         foreignKey: 'userId',
+        onDelete:"CASCADE",
+        hooks:true,
         sourceKey: 'id'
       });
       User.hasMany(models.Comment,{
-        foreignKey:'userId'
+        foreignKey:'userId',
+        onDelete:"CASCADE",
+        hooks:true
       })
     }
   }

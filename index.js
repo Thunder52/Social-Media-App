@@ -18,6 +18,7 @@ app.use(session({resave:true,secret:process.env.MYSECRET,saveUninitialized:false
 app.use(flash());
 app.set('view engine',"ejs");
 app.set('views',path.join(__dirname,"/src/views"));
+app.use(express.static(path.join(__dirname,'./public')));
 
 app.use(authRoutes);
 app.use(postRoutes);

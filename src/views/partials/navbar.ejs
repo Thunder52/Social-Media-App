@@ -5,20 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/home.css">
+    <title>Social Media</title>
 </head>
-<body>
-    <nav class="navbar bg-body-tertiary mx-2">
-  <div class="container-fluid">
-    <a class="navbar-brand">Social Media</a>
-    <form class="d-flex w-50" role="search">
-      <input class="form-control w-50 rounded-pill me-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-primary rounded-pill" type="submit">Search</button>
-    </form>
-    <a href="/create"><button class="btn btn-primary">+ create post</button></a>
-  </div>
-</nav>
+<body class="bg-light">
+    <nav class="navbar modern-navbar sticky-top">
+        <div class="container-fluid px-4">
+            <a href="/home" class="brand-logo">
+                <i class="bi bi-app-indicator"></i> SocialHub
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <a href="/create">
+                    <button class="btn create-btn">
+                        <i class="bi bi-plus-lg"></i> Create Post
+                    </button>
+                </a>
+                <a href="/logout">
+                    <button class="btn create-btn">
+                       Logout
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to SocialHub</h1>
+        <p class="text-center text-muted">Share your moments with the world</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
